@@ -1,14 +1,15 @@
+// @ts-ignore
 import Container from "./components/Container.tsx";
 import cl from "./index.module.css"
 import {useState} from "react";
-
+import * as React from "react";
 
 function App() {
     const [currentCard, setCurrentCard] = useState(null)
 
-    function dragStartHandler(e: any, card: any) {
-        console.log('this is card', card)
-        setCurrentCard(card)
+    function dragStartHandler(e: any) {
+        console.log('this is card', currentCard)
+        setCurrentCard(currentCard)
     }
 
     function dragEndHandler(e: any) {
@@ -20,19 +21,19 @@ function App() {
         e.target.style.background = 'pink'
     }
 
-    function dropHandler(e: any, card: any) {
+    function dropHandler(e: any) {
         e.preventDefault()
-        console.log('this is card2', card)
+        console.log('this is card2', currentCard)
     }
 
     return (
         <div
-            onDragStart={(e) => dragStartHandler(e, card)}
+            onDragStart={(e) => dragStartHandler(e)}
             onDragLeave={(e) => dragEndHandler(e)}
             onDragEnd={(e) => dragEndHandler(e)}
             onDragOver={(e) => dragOverHandler(e)}
-            onDrop={(e) => dropHandler(e, card)}
-            dragable={true}
+            onDrop={(e) => dropHandler(e)}
+
         >
             <h1>Hello GAME</h1>
             <Container className={cl.table_right} rows={5} columns={1}/>

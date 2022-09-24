@@ -1,20 +1,31 @@
+import styles from './style.module.css';
+
 interface Prop {
-    rows?: number;
-    columns?: string
-    className?: string
+    rows?: string | number;
+    columns?: string | number;
+    className?: string;
 }
+
+const store = [
+    {
+        keyY: "Y",
+        keyX: "X"
+    },
+]
 
 const Container = ({rows, columns, className}: Prop) => {
     return (
         <div>
             <table className={className}>
                 <tbody>
-                {Array.from(Array(rows).keys()).map(() => {
+                {Array.from(Array(rows).keys()).map((e, i) => {
                     return (
-                        <tr>
-                            {Array.from(Array(columns).keys()).map(() => {
+                        <tr className={styles.letter}>
+                            {store[i]?.keyY}
+                            {Array.from(Array(columns).keys()).map((e, i) => {
                                 return (
-                                    <td>
+                                    <td className={styles.letter}>
+                                        {store[i]?.keyX}
                                     </td>
                                 )
                             })}
